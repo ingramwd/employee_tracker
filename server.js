@@ -22,11 +22,15 @@ const departPrompt = () => {
         ])
         .then(input = (input) => {
             console.log(input);
-            `INSERT INTO candidates (first_name, last_name, industry_connected)
-            VALUES (?)`, {
-                name: input.name
-            },
-                console.log(`added department ${input}`);
+            sql = `INSERT INTO department (name) VALUES (?)`;
+            params = [input.department];
+
+            dbConnect.query(sql, params, (err) => {
+                if (err) {
+                    throw err;
+                }
+            })
+            console.log(`added department ${input.department}`);
             department();
 
         })
