@@ -9,6 +9,30 @@ const cTable = require('console.table');
 
 // employee();
 
+
+
+const departPrompt = () => {
+    return inquirer.prompt
+        ([
+            {
+                type: 'input',
+                name: 'department',
+                message: 'what is your departments name?'
+            }
+        ])
+        .then(input = (input) => {
+            console.log(input);
+            `INSERT INTO candidates (first_name, last_name, industry_connected)
+            VALUES (?)`, {
+                name: input.name
+            },
+                console.log(`added department ${input}`);
+            department();
+
+        })
+
+}
+
 const iniPrompt = () => {
 
     return inquirer.prompt
@@ -38,12 +62,13 @@ const iniPrompt = () => {
                     break;
                 case 'view all employees':
                     employee();
+                    break;
+                case 'add a department':
+                    departPrompt();
+                    break;
             }
         })
 
 };
 
 iniPrompt();
-
-
-
